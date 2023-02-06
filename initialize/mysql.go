@@ -13,7 +13,7 @@ import (
 
 func runMysql() {
 	mc := global.Config.Mysql
-	dsn := fmt.Sprintf("%s:%s@%s", mc.Username, mc.Password, mc.Url)
+	dsn := fmt.Sprintf("%s:%s@%s", mc.Username, mc.Password, mc.DSN)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{SingularTable: true},
 	})

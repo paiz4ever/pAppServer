@@ -6,4 +6,7 @@ server:
 mysql:
   username: root
   password: 19971119
-  url: tcp(localhost:3306)/pApp?charset=utf8&parseTime=True&loc=Local
+  dsn: tcp(localhost:3306)/pApp?charset=utf8&parseTime=True&loc=Local
+
+redis:
+  addr: localhost:6379

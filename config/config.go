@@ -1,9 +1,9 @@
 package config
 
-// 组合全部配置模型
 type Config struct {
-	Server Server `mapstructure:"server"`
-	Mysql  Mysql  `mapstructure:"mysql"`
+	Server `mapstructure:"server"`
+	Mysql  `mapstructure:"mysql"`
+	Redis  `mapstructure:"redis"`
 }
 
 // 服务配置
@@ -15,5 +15,10 @@ type Server struct {
 type Mysql struct {
 	Username string `mapstructure:"username"`
 	Password string `mapstructure:"password"`
-	Url      string `mapstructure:"url"`
+	DSN      string `mapstructure:"dsn"`
+}
+
+// Redis配置
+type Redis struct {
+	Addr string `mapstructure:"addr"`
 }
