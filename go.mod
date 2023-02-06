@@ -6,6 +6,7 @@ require (
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/gin-gonic/gin v1.8.2
 	github.com/go-redis/redis/v8 v8.11.5
+	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/mojocn/base64Captcha v1.3.5
 	github.com/spf13/viper v1.15.0
 	gorm.io/driver/mysql v1.4.5

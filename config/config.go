@@ -4,11 +4,12 @@ type Config struct {
 	Server `mapstructure:"server"`
 	Mysql  `mapstructure:"mysql"`
 	Redis  `mapstructure:"redis"`
+	Jwt    `mapstructure:"jwt"`
 }
 
 // 服务配置
 type Server struct {
-	Post int32 `mapstructure:"post"`
+	Port int32 `mapstructure:"port"`
 }
 
 // MySQL配置
@@ -21,4 +22,10 @@ type Mysql struct {
 // Redis配置
 type Redis struct {
 	Addr string `mapstructure:"addr"`
+}
+
+// Jwt配置
+type Jwt struct {
+	SignedKey string `mapstructure:"signedKey"`
+	MaxAge    int32  `mapstructure:"maxAge"`
 }
