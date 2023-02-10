@@ -12,7 +12,7 @@ import (
 // 加载配置文件
 func loadConfig() {
 	viper.AddConfigPath("./")
-	viper.SetConfigName("config")
+	viper.SetConfigName("config.dev")
 	viper.SetConfigType("yaml")
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("Fatal error resources file: %s \n", err.Error())

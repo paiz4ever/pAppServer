@@ -13,3 +13,8 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+todo.txt
+server.exe
+.vscode
+config.dev.yaml
+temp.yaml
