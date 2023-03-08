@@ -9,6 +9,6 @@ import (
 
 var (
 	Config config.Config
-	Db     *gorm.DB
-	Rdb    *redis.Client
+	DB     *gorm.DB
+	RDB    *redis.Client
 )

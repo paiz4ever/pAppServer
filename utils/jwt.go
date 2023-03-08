@@ -8,23 +8,23 @@ import (
 )
 
 type Claims struct {
-	Username string `json:"username"`
+	UUID string `json:"uuid"`
 	jwt.StandardClaims
 }
 
-func GenerateToke(username string) (string, error) {
-	claims := Claims{username, jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(time.Duration(global.Config.MaxAge)).Unix(),
-		Issuer:    username,
+func GenerateToke(uuid string) (string, error) {
+	claims := Claims{uuid, jwt.StandardClaims{
+		ExpiresAt: time.Now().Add(time.Second * time.Duration(global.Config.MaxAge)).Unix(),
 	},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte(global.Config.Jwt.SignedKey))
 }
 
-func VerifyToken(tokenString string) bool {
-	token, err := jwt.ParseWithClaims(tokenString, &Claims{}, func(token *jwt.Token) (interface{}, error) {
+func VerifyToken(tokenString string) (string, bool) {
+	var c Claims
+	token, err := jwt.ParseWithClaims(tokenString, &c, func(token *jwt.Token) (interface{}, error) {
 		return []byte(global.Config.Jwt.SignedKey), nil
 	})
-	return token.Valid && err != nil
+	return c.UUID, token.Valid && err == nil
 }

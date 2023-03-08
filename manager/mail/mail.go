@@ -37,7 +37,7 @@ func (m *MailManager) Send(mt MsgTytpe, to ...string) {
 
 func Run() {
 	mailConfig := global.Config.Mail
-	d := gomail.NewDialer(mailConfig.Host, mailConfig.Port, mailConfig.UserName, mailConfig.Password)
+	d := gomail.NewDialer(mailConfig.Host, mailConfig.Port, mailConfig.UserName, mailConfig.PassWord)
 	for {
 		select {
 		case msg := <-MailMgr.MsgC:
@@ -56,7 +56,7 @@ func Run() {
 				fmt.Println("发送邮件成功")
 			}
 		case <-time.After(time.Duration(mailConfig.CloseTime) * time.Second):
-			fmt.Println("准备断开smtp链接")
+			// fmt.Println("准备断开smtp链接")
 			if MailMgr.SmtpSender != nil {
 				fmt.Println("自动断开smtp链接")
 				if err := MailMgr.SmtpSender.Close(); err != nil {

@@ -10,5 +10,5 @@ func runRedis() {
 	rdb := redis.NewClient(&redis.Options{
 		Addr: global.Config.Redis.Addr,
 	})
-	global.Rdb = rdb
+	global.RDB = rdb
 }

@@ -7,15 +7,15 @@ import (
 )
 
 type Client struct {
-	Uid     int
+	UUID    string
 	Conn    *websocket.Conn
 	MsgC    chan []byte
 	isClose bool
 }
 
-func NewChatClient(uid int, conn *websocket.Conn) *Client {
+func NewChatClient(uuid string, conn *websocket.Conn) *Client {
 	return &Client{
-		Uid:     uid,
+		UUID:    uuid,
 		Conn:    conn,
 		MsgC:    make(chan []byte),
 		isClose: false, // 此标志防止顶号时channel被重复关闭

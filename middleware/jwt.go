@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"pAppServer/response"
+	"pAppServer/models/response"
 	"pAppServer/utils"
 
 	"github.com/gin-gonic/gin"
@@ -15,11 +15,14 @@ func JwtAuth() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		if !utils.VerifyToken(token) {
+		if uuid, isok := utils.VerifyToken(token); !isok {
 			response.Failed("登录已过期，请重新登录", c)
 			c.Abort()
 			return
+		} else {
+			c.Set("uuid", uuid)
+			c.Next()
 		}
-		c.Next()
+
 	}
 }

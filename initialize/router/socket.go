@@ -3,7 +3,7 @@ package router
 import (
 	"net/http"
 	"pAppServer/manager/chat"
-	"strconv"
+	"pAppServer/models/response"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
@@ -16,13 +16,14 @@ var upGrader = websocket.Upgrader{
 }
 
 func hanleChatSocket(c *gin.Context) {
-	uid, err := strconv.Atoi(c.Param("uid"))
-	if err != nil {
+	uuid := c.GetString("uuid")
+	if uuid == "" {
+		response.Failed("uuid empty", c)
 		return
 	}
 	conn, err := upGrader.Upgrade(c.Writer, c.Request, nil)
 	if err != nil {
 		return
 	}
-	chat.ChatMgr.RegisterC <- chat.NewChatClient(uid, conn)
+	chat.ChatMgr.RegisterC <- chat.NewChatClient(uuid, conn)
 }

@@ -3,6 +3,7 @@ package router
 import (
 	"net/http"
 	v1 "pAppServer/api/v1"
+	"pAppServer/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,21 +17,17 @@ func InitRounter(r *gin.Engine) {
 		c.String(http.StatusNotFound, "404 not found")
 	})
 
-	r.GET("/socket.chat/:uid", hanleChatSocket)
-
-	consumer := r.Group("/consumer")
+	csm := r.Group("/csm")
 	{
-		consumer.PUT("/collect", v1.Group.Consumer.CollectGoods)
+		csm.POST("/login", new(v1.CUserApi).Login)
+		csm.Use(middleware.JwtAuth())
+		csm.POST("/upload", new(v1.CUserApi).Upload)
+		csm.POST("/editinfo", new(v1.CUserApi).EditInfo)
+		csm.POST("/bindphone", new(v1.CUserApi).BindPhone)
+		csm.GET("/socket/chat", hanleChatSocket)
 	}
 
 	{
-		// cw := consumer.Use(middleware.JwtAuth())
-		// cw.GET("/www", func(c *gin.Context) {
-		// 	c.String(200, "ok")
-		// })
-		// consumer.GET("/wwwwww", func(c *gin.Context) {
-		// 	c.String(200, "ok")
-		// })
 		// consumer.GET("/collect", func(c *gin.Context) {
 		// 	var param Test
 		// 	err := c.ShouldBind(&param)
@@ -62,4 +59,5 @@ func InitRounter(r *gin.Engine) {
 		// 	c.String(200, "ok")
 		// })
 	}
+
 }

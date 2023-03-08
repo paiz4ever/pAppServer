@@ -12,7 +12,7 @@ import (
 func runServer() {
 	r := gin.Default()
 	r.Use(middleware.Cors())
-	r.Static("/assets", "./assets/img")
+	r.Static("/assets", "./assets")
 	router.InitRounter(r)
 	r.Run(fmt.Sprintf(":%d", global.Config.Server.Port))
 }

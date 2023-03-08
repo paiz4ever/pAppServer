@@ -1,8 +1,6 @@
 package initialize
 
-import (
-	"pAppServer/manager"
-)
+import "pAppServer/manager"
 
 func Run() {
 	// 读取配置

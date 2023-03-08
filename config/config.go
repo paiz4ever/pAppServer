@@ -7,6 +7,7 @@ type Config struct {
 	Redis  `mapstructure:"redis"`
 	Jwt    `mapstructure:"jwt"`
 	Mail   `mapstructure:"mail"`
+	WX     `mapstructure:"wx"`
 }
 
 // app配置
@@ -21,8 +22,8 @@ type Server struct {
 
 // MySQL配置
 type Mysql struct {
-	Username string `mapstructure:"username"`
-	Password string `mapstructure:"password"`
+	UserName string `mapstructure:"username"`
+	PassWord string `mapstructure:"password"`
 	DSN      string `mapstructure:"dsn"`
 }
 
@@ -43,6 +44,12 @@ type Mail struct {
 	Port      int    `mapstructure:"port"`
 	UserName  string `mapstructure:"username"`
 	Alias     string `mapstructure:"alias"`
-	Password  string `mapstructure:"password"`
+	PassWord  string `mapstructure:"password"`
 	CloseTime int    `mapstructure:"closeTime"`
+}
+
+// 邮箱配置
+type WX struct {
+	AppId  string `mapstructure:"appid"`
+	Secret string `mapstructure:"secret"`
 }
