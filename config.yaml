@@ -29,3 +29,8 @@ mail:
   alias: 
   password: 
   closeTime: 10
+
+# 微信
+wx:
+  appid: 
+  secret: 

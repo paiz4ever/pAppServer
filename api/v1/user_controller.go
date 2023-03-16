@@ -56,7 +56,7 @@ func (cu *CUserApi) Upload(c *gin.Context) {
 	fmt.Println("mmm===", c.PostForm("mmm"))
 	fmt.Println("aaa===", c.PostForm("aaa"))
 	fmt.Println("bbb===", c.PostForm("bbb"))
-	response.Success("hello", c)
+	response.Success(c.PostForm("aaa"), c)
 	// file, err := c.FormFile("file")
 	// if err != nil {
 	// 	response.Failed("图片上传出错", c)

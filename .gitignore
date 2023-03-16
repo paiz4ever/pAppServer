@@ -13,8 +13,9 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
-todo.txt
+TODO.txt
 server.exe
 .vscode
 config.dev.yaml
-temp.yaml
+ISSUE.md
+USEFUL.md
