@@ -20,6 +20,7 @@ func JwtAuth() gin.HandlerFunc {
 			c.Abort()
 			return
 		} else {
+			// TODO 使用context.WithValue
 			c.Set("uuid", uuid)
 			c.Next()
 		}
